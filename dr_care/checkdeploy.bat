@@ -1,0 +1,1 @@
+python manage.py check --deploy --settings=dr_care.settings.local

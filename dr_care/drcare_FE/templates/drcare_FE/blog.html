@@ -1,0 +1,72 @@
+{% extends 'drcare_FE/base.html' %}
+
+{% load static %}
+
+
+{% block nav_top %}
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container d-flex align-items-center">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <p class="button-custom order-lg-last mb-0"><a href="/appointment" class="btn btn-secondary py-2 px-3">Make An Appointment</a></p>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav mr-auto">
+	        	<li class="nav-item"><a href="/" class="nav-link pl-0">Home</a></li>
+	        	<li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+	        	<li class="nav-item"><a href="/doctor" class="nav-link">Doctor</a></li>
+	        	<li class="nav-item"><a href="/department" class="nav-link">Departments</a></li>
+	        	<li class="nav-item"><a href="/pricing" class="nav-link">Pricing</a></li>
+	        	<li class="nav-item active"><a href="/blog" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+{% endblock nav_top %}
+
+{% block breadcrumb %}
+<section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'drcare_FE/images/bg_1.jpg' %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Blog</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="/index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>BLOG <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock breadcrumb %}
+
+{% block blogs %}
+<section class="ftco-section bg-light">
+		<div class="row md-2">
+      {% for post in posts %}
+			<div class="col-md-6 ftco-animate">
+				<div class="blog-entry m-2">
+				  <a href="{{post.get_absolute_url}}" class="block-20" style="background-image: url({% static 'drcare_FE/images/image_1.jpg' %});">
+									<div class="meta-date text-center p-2">
+					  <span class="day">{{post.publish.day}}</span>
+					  <span class="mos">{{post.publish|date:'F'}}</span>
+					  <span class="yr">{{post.publish.year}}</span>
+					</div>
+				  </a>
+				  <div class="text bg-white p-4">
+					<h3 class="heading"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+					<p>{{post.desc}}</p>
+					<div class="d-flex align-items-center mt-4">
+						<p class="mb-0"><a href="{{post.get_absolute_url}}" class="btn btn-primary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
+						<p class="ml-auto mb-0">
+							<a href="#" class="mr-2">{{post.author}}</a>
+							<a href="#" class="meta-chat"><span class="icon-chat"></span> {{forloop.counter}}</a>
+						</p>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			{% endfor %}      
+    </div>
+</section>
+{% endblock blogs %}
