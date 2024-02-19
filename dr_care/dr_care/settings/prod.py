@@ -10,9 +10,17 @@ ADMINS = [
 ALLOWED_HOSTS = ['*']
 
 DATABASES = {
-        'default': dj_database_url.config(
-            default = "sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3"))
-        
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 TIME_ZONE = 'Africa/Kampala'
+
+
+STATIC_URL = 'static/'
+STATIC_ROOT = '/static'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = '/media'
