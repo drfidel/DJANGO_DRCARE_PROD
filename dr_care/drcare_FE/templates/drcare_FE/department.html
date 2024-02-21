@@ -15,7 +15,7 @@
 	        	<li class="nav-item"><a href="/" class="nav-link pl-0">Home</a></li>
 	        	<li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="/doctor" class="nav-link">Doctor</a></li>
-	        	<li class="nav-item"><a href="/department" class="nav-link">Departments</a></li>
+	        	<li class="nav-item active"><a href="/department" class="nav-link">Departments</a></li>
 	        	<li class="nav-item"><a href="/pricing" class="nav-link">Pricing</a></li>
 	        	<li class="nav-item"><a href="/blog" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
@@ -56,7 +56,7 @@
 		<div class="col-md-12 nav-link-wrap">
 			<div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 			  {% for department in departments  %}
-				  <a class="nav-link ftco-animate" id= {{ department.id}} data-toggle="pill" href=#{{department.departmentName}} role="tab" aria-controls={{department.departmentName}} aria-selected="true">{{department.departmentName}}</a>
+				  <a {% if department.departmentName == "Dental" %} class="nav-link ftco-animate active" id={{ department.id }} data-toggle="pill" href=#{{department.departmentName}} role="tab" aria-controls={{department.departmentName}} aria-selected="true" {% else %} class="nav-link ftco-animate" id={{ department.id }} data-toggle="pill" href=#{{department.departmentName}} role="tab" aria-controls={{department.departmentName}} aria-selected="false" {% endif %}>{{department.departmentName}}</a>
 			  {% endfor %}
 			</div>
 		  </div>
@@ -65,13 +65,13 @@
 			<div class="tab-content bg-light p-4 p-md-5 ftco-animate" id="v-pills-tabContent">
 				{% for department in departments  %}
 				
-			  <div class="tab-pane fade" id={{department.departmentName}}  role="tabpanel" aria-labelledby="v-pills-day-5-tab">
+			  <div {% if department.departmentName == "Dental" %} class="tab-pane fade show active" id={{department.departmentName}}  role="tabpanel" aria-labelledby="v-pills-day-5-tab"{% else %} class="tab-pane fade" id={{department.departmentName}}  role="tabpanel" aria-labelledby="v-pills-day-5-tab" {% endif %}>
 				  <div class="row departments">
 					  <div class="col-lg-4 order-lg-last d-flex align-items-stretch">
 						  <div class="img d-flex align-self-stretch" style="background-image: url({% static 'drcare_FE/images/dept-5.jpg' %});"></div>
 					  </div>
 					  <div class="col-md-8">
-						  <h2>{{department.departmentName}} Deparment</h2>
+						  <h2>{{department.departmentName}} Department</h2>
 						  <p>{{department.departmentDesc}}</p>
 										
 						<div class="row mt-5 pt-2">

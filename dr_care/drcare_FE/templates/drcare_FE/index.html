@@ -137,7 +137,7 @@
             <div class="col-md-12 nav-link-wrap">
 	            <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 	              {% for department in departments  %}
-				  	<a class="nav-link ftco-animate" id= {{ department.id}} data-toggle="pill" href=#{{department.departmentName}} role="tab" aria-controls={{department.departmentName}} aria-selected="true">{{department.departmentName}}</a>
+				  	<a {% if department.departmentName == "Dental" %} class="nav-link ftco-animate active" id={{ department.id }} data-toggle="pill" href=#{{department.departmentName}} role="tab" aria-controls={{department.departmentName}} aria-selected="true" {% else %} class="nav-link ftco-animate" id={{ department.id }} data-toggle="pill" href=#{{department.departmentName}} role="tab" aria-controls={{department.departmentName}} aria-selected="false" {% endif %}>{{department.departmentName}}</a>
 				  {% endfor %}
 	            </div>
 	          </div>
@@ -146,7 +146,7 @@
 	            <div class="tab-content bg-light p-4 p-md-5 ftco-animate" id="v-pills-tabContent">
 				{% for department in departments  %}
 					
-	              <div class="tab-pane fade" id={{department.departmentName}}  role="tabpanel" aria-labelledby="v-pills-day-5-tab">
+				<div {% if department.departmentName == "Dental" %} class="tab-pane fade show active" id={{department.departmentName}}  role="tabpanel" aria-labelledby="v-pills-day-5-tab"{% else %} class="tab-pane fade" id={{department.departmentName}}  role="tabpanel" aria-labelledby="v-pills-day-5-tab" {% endif %}>
 	              	<div class="row departments">
 	              		<div class="col-lg-4 order-lg-last d-flex align-items-stretch">
 	              			<div class="img d-flex align-self-stretch" style="background-image: url({% static 'drcare_FE/images/' %}{{department.departmentImg}});"></div>
@@ -277,10 +277,10 @@
 	          	
 				<div class="d-md-flex">
 					<div class="form-group">
-						<input type="text" name="sirName" class="form-control" placeholder="First Name">
+						<input type="text" name="sirName" class="form-control" placeholder="First Name *" required>
 					</div>
 					<div class="form-group ml-md-4">
-						<input type="text" name="firstName" class="form-control" placeholder="Last Name">
+						<input type="text" name="firstName" class="form-control" placeholder="Last Name *" required>
 					</div>
 				</div>
 				<div class="d-md-flex">
@@ -288,36 +288,36 @@
 						<div class="form-field">
 					  		<div class="select-wrap">
 								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="department" id="" class="form-control">
-										<option value="">Select a Services</option>
+									<select name="department" id="" class="form-control" required>
+										<option value="">Select a Services *</option>
 										{% for department in departments  %}
-											<option value={{department}}>{{department}}</option>
+											<option style="background-color: #000;" value={{department}}>{{department}}</option>
 										{% endfor %}
 									</select>
 								</div>
 			  				</div>
 						</div>
 						<div class="form-group ml-md-4">
-							<input type="text" name="telContact" class="form-control" placeholder="Phone">
+							<input type="text" name="telContact" class="form-control" placeholder="Phone *" required>
 						</div>
 					</div>
 					<div class="d-md-flex">
 						<div class="form-group">
 						<!-- <div class="input-wrap">
 						<div class="icon"><span class="ion-md-calendar"></span></div> -->
-						<input type="date" name="appointmentDate" class="form-control" placeholder="Date">
+						<input type="date" name="appointmentDate" class="form-control" placeholder="Date *" required>
 						<!-- </div> -->
 						</div>
 						<div class="form-group ml-md-4">
 							<div class="input-wrap">
 								<div class="icon"><span class="ion-ios-clock"></span></div>
-									<input type="text" name="appointmentTime" class="form-control appointment_time" placeholder="Time">
+									<input type="text" name="appointmentTime" class="form-control appointment_time" placeholder="Time *" required>
 								</div>
 							</div>
 						</div>
 						<div class="d-md-flex">
 							<div class="form-group">
-								<textarea name="amessage" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
+								<textarea name="amessage" id="" cols="30" rows="2" class="form-control" placeholder="Message *" required></textarea>
 							</div>
 						<div class="form-group ml-md-4">
 							<input type="submit" value="Appointment" class="btn btn-secondary py-3 px-4">
@@ -374,8 +374,8 @@
     	<div class="container">
     		<div class="row justify-content-center mb-5 pb-2">
           <div class="col-md-8 text-center heading-section ftco-animate">
-          	<span class="subheading">Pricing</span>
-            <h2 class="mb-4">Our Pricing</h2>
+          	<span class="subheading">Pricing Plan</span>
+            <h2 class="mb-4">Trending Pricing Plans</h2>
             <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
           </div>
         </div>
@@ -383,7 +383,7 @@
         	<div class="col-md-3 ftco-animate">
         		<div class="pricing-entry pb-5 text-center">
         			<div>
-	        			<h3 class="mb-4">Basic</h3>
+	        			<h3 class="mb-4">Basic Care</h3>
 	        			<p><span class="price">Ugx 50K</span> <span class="per">/ session</span></p>
 	        		</div>
         			<ul>
@@ -399,7 +399,7 @@
         	<div class="col-md-3 ftco-animate">
         		<div class="pricing-entry pb-5 text-center">
         			<div>
-	        			<h3 class="mb-4">Standard</h3>
+	        			<h3 class="mb-4">Basic Maternal</h3>
 	        			<p><span class="price">Ugx 100K</span> <span class="per">/ session</span></p>
 	        		</div>
         			<ul>
@@ -415,7 +415,7 @@
         	<div class="col-md-3 ftco-animate">
         		<div class="pricing-entry active pb-5 text-center">
         			<div>
-	        			<h3 class="mb-4">Premium</h3>
+	        			<h3 class="mb-4">VIP Maternal</h3>
 	        			<p><span class="price">Ugx 200K</span> <span class="per">/ session</span></p>
 	        		</div>
         			<ul>
@@ -431,7 +431,7 @@
         	<div class="col-md-3 ftco-animate">
         		<div class="pricing-entry pb-5 text-center">
         			<div>
-	        			<h3 class="mb-4">Platinum</h3>
+	        			<h3 class="mb-4">Standard Dental</h3>
 	        			<p><span class="price">Ugx 500K</span> <span class="per">/ session</span></p>
 	        		</div>
         			<ul>
@@ -450,7 +450,7 @@
 {% endblock pricing %}
 
 {% block partners %}
-<section class="ftco-section ftco-no-pt">
+<section class="ftco-section">
 	<div class="container">
 	  <div class="row justify-content-center mb-5 pb-2">
 		<div class="col-md-8 text-center heading-section ftco-animate">
@@ -463,7 +463,7 @@
 		<div class="col-md-6 col-lg-3 ftco-animate">
 			<div class="staff">
 				<div class="img-wrap d-flex align-items-stretch">
-					<div class="img align-self-stretch" style="background-image: url({% static 'drcare_FE/images/insurance/img-1.webp' %})"></div>
+					<div class="img" style="background-image: url({% static 'drcare_FE/images/insurance/img-16.jpg' %})"></div>
 				</div>
 			</div>
 		</div>
@@ -485,7 +485,7 @@
 		<div class="col-md-6 col-lg-3 ftco-animate">
 			<div class="staff">
 				<div class="img-wrap d-flex align-items-stretch">
-					<div class="img align-self-stretch" style="background-image: url({% static 'drcare_FE/images/insurance/img-4.jpg' %})"></div>
+					<div class="img align-self-stretch" style="background-image: url({% static 'drcare_FE/images/insurance/img-18.png' %})"></div>
 				</div>
 			</div>
 		</div>
@@ -509,7 +509,7 @@
 		<div class="col-md-6 col-lg-3 ftco-animate">
 			<div class="staff">
 				<div class="img-wrap d-flex align-items-stretch">
-					<div class="img align-self-stretch" style="background-image: url({% static 'drcare_FE/images/insurance/img-7.webp' %})"></div>
+					<div class="img align-self-stretch" style="background-image: url({% static 'drcare_FE/images/insurance/img-12.png' %})"></div>
 				</div>
 			</div>
 		</div>
@@ -517,7 +517,7 @@
 		<div class="col-md-6 col-lg-3 ftco-animate">
 			<div class="staff">
 				<div class="img-wrap d-flex align-items-stretch">
-					<div class="img align-self-stretch" style="background-image: url({% static 'drcare_FE/images/insurance/img-8.png' %})"></div>
+					<div class="img align-self-stretch" style="background-image: url({% static 'drcare_FE/images/insurance/img-10.jpeg' %})"></div>
 				</div>
 			</div>
 		</div>
@@ -541,7 +541,7 @@
 			<div class="col-md-4 ftco-animate">
 				<div class="blog-entry">
 				  <a href="{{ post.get_absolute_url }}" class="block-20" style="background-image: url({% static 'drcare_FE/images/image_1.jpg' %});">
-									<div class="meta-date text-center p-2">
+					<div class="meta-date text-center p-2">
 					  <span class="day">{{post.publish.day}}</span>
 					  <span class="mos">{{post.publish|date:'F'}}</span>
 					  <span class="yr">{{post.publish.year}}</span>

@@ -30,6 +30,8 @@ def indexView(request):
             
             except Exception:
                 return render(request, 'drcare_FE/subscribefail.html')
+        else:
+            return render(request, 'drcare_FE/subscribefail.html')
     else:
         form = CaptchaTestForm()
     
@@ -67,6 +69,8 @@ def aboutView(request):
             
             except Exception:
                 return render(request, 'drcare_FE/subscribefail.html')
+        else:
+            return render(request, 'drcare_FE/subscribefail.html')
     else:
         form = CaptchaTestForm()
 
@@ -82,23 +86,79 @@ def doctorView(request):
     about = About.objects.first()
     doctors = Doctor.objects.all()
 
-    return render(request, 'drcare_FE/doctor.html', {
-        'about' : about, 
-        'doctors': doctors})
+    if request.method == 'POST':
+        form = CaptchaTestForm(request.POST)
+
+        if form.is_valid():
+            try:
+                subcribemail = SubscribeMail()
+                subcribemail.email = request.POST.get('email')
+                subcribemail.save()
+
+                return render(request, 'drcare_FE/subscribesuccess.html', {'about' : about})
+            
+            except Exception:
+                return render(request, 'drcare_FE/subscribefail.html')
+        else:
+            return render(request, 'drcare_FE/subscribefail.html')
+    else:
+        form = CaptchaTestForm()
+
+        return render(request, 'drcare_FE/doctor.html', {
+            'about' : about, 
+            'doctors': doctors,
+            'form': form})
 
 def departmentView(request):
     about = About.objects.first()
     services = Service.objects.filter(realserv=1)
     departments = Department.objects.filter(realdept=1)
+
+    if request.method == 'POST':
+        form = CaptchaTestForm(request.POST)
+
+        if form.is_valid():
+            try:
+                subcribemail = SubscribeMail()
+                subcribemail.email = request.POST.get('email')
+                subcribemail.save()
+
+                return render(request, 'drcare_FE/subscribesuccess.html', {'about' : about})
+            
+            except Exception:
+                return render(request, 'drcare_FE/subscribefail.html')
+        else:
+            return render(request, 'drcare_FE/subscribefail.html')
+    else:
+        form = CaptchaTestForm()
     
-    return render(request, 'drcare_FE/department.html', {
-        'about' : about,
-        'services' : services,
-        'departments' : departments })
+        return render(request, 'drcare_FE/department.html', {
+            'about' : about,
+            'services' : services,
+            'departments' : departments,
+            'form': form })
 
 def pricingView(request):
     about = About.objects.first()
-    return render(request, 'drcare_FE/pricing.html', {'about' : about})
+
+    if request.method == 'POST':
+        form = CaptchaTestForm(request.POST)
+
+        if form.is_valid():
+            try:
+                subcribemail = SubscribeMail()
+                subcribemail.email = request.POST.get('email')
+                subcribemail.save()
+
+                return render(request, 'drcare_FE/subscribesuccess.html', {'about' : about})
+            
+            except Exception:
+                return render(request, 'drcare_FE/subscribefail.html')
+        else:
+            return render(request, 'drcare_FE/subscribefail.html')
+    else:
+        form = CaptchaTestForm()
+        return render(request, 'drcare_FE/pricing.html', {'about' : about, 'form': form})
 
 def appointmentView(request):
     about = About.objects.first()
@@ -117,7 +177,7 @@ def appointmentView(request):
         appointment.amessage = request.POST.get('amessage')
         appointment.save()
 
-        return render(request, 'drcare_FE/success.html', {'about' : about})
+        return render(request, 'drcare_FE/success.html', {'about' : about, 'form': form})
     else:
         form = CaptchaTestForm()
         return render(request, 'drcare_FE/appointment.html', {
@@ -130,11 +190,30 @@ def blogView(request):
     posts = Post.objects.all()
     comments = Comment.objects.all()
 
-    return render(request, 'drcare_FE/blog.html', {
-        'about' : about,
-        'posts' : posts,
-        'comments' : comments
-        })
+    if request.method == 'POST':
+        form = CaptchaTestForm(request.POST)
+
+        if form.is_valid():
+            try:
+                subcribemail = SubscribeMail()
+                subcribemail.email = request.POST.get('email')
+                subcribemail.save()
+
+                return render(request, 'drcare_FE/subscribesuccess.html', {'about' : about, 'form': form})
+            
+            except Exception:
+                return render(request, 'drcare_FE/subscribefail.html')
+        else:
+            return render(request, 'drcare_FE/subscribefail.html')
+    else:
+        form = CaptchaTestForm()
+
+        return render(request, 'drcare_FE/blog.html', {
+            'about' : about,
+            'posts' : posts,
+            'comments' : comments,
+            'form': form
+            })
 
 def contactView(request):
     about = About.objects.first()
@@ -158,4 +237,22 @@ def contactView(request):
 
 def blogdetailView(request):
     about = About.objects.first()
-    return render(request, 'drcare_FE/blog-single.html', {'about' : about})
+
+    if request.method == 'POST':
+        form = CaptchaTestForm(request.POST)
+
+        if form.is_valid():
+            try:
+                subcribemail = SubscribeMail()
+                subcribemail.email = request.POST.get('email')
+                subcribemail.save()
+
+                return render(request, 'drcare_FE/subscribesuccess.html', {'about' : about})
+            
+            except Exception:
+                return render(request, 'drcare_FE/subscribefail.html', {'about' : about})
+        else:
+            return render(request, 'drcare_FE/subscribefail.html')
+    else:
+        form = CaptchaTestForm()
+        return render(request, 'drcare_FE/blog-single.html', {'about' : about,'form': form})

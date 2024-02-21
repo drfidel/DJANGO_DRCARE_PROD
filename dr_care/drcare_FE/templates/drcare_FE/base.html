@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{% static 'drcare_FE/css/flaticon.css' %}" >
     <link rel="stylesheet" href="{% static 'drcare_FE/css/icomoon.css' %}" >
     <link rel="stylesheet" href="{% static 'drcare_FE/css/style.css' %}" >
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'drcare_FE/favicon-32x32.png' %}">
     
   </head>
   <body>
@@ -129,7 +130,6 @@
 
 	{% endblock blogs %}
 
-
 	{% comment %} footer section {% endcomment %}
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
@@ -145,14 +145,14 @@
 	              <ul>
 	                <li><span class="icon icon-map-marker"></span><span class="text">{{about.address}}</span></li>
 	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">{{about.phoneNumber}}</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{about.email}}</span></a></li>
+	                <li><a href="mailto:akiyofidel@gmail.com"><span class="icon icon-envelope"></span><span class="text">{{about.email}}</span></a></li>
 	              </ul>
 	            </div>
 
 	            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.x.com/profile"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.facebook.com/profile"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.instagram.com/profile"><span class="icon-instagram"></span></a></li>
               </ul>
             </div>
           </div>
@@ -160,11 +160,11 @@
             <div class="ftco-footer-widget mb-5 ml-md-4">
               <h2 class="ftco-heading-2">Links</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
-                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
-                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Services</a></li>
-                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Deparments</a></li>
-                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
+                <li><a href="/"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
+                <li><a href="/about"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
+                <li><a href="/doctor"><span class="ion-ios-arrow-round-forward mr-2"></span>Doctors</a></li>
+                <li><a href="/department"><span class="ion-ios-arrow-round-forward mr-2"></span>Deparments</a></li>
+                <li><a href="/contact"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
               </ul>
             </div>
             <div class="ftco-footer-widget mb-5 ml-md-4">
@@ -205,6 +205,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-md">
           	<div class="ftco-footer-widget mb-5">
             	<h2 class="ftco-heading-2">Opening Hours</h2>
@@ -214,7 +215,7 @@
             	<h2 class="ftco-heading-2">Subscribe for newslink!</h2>
               <form action="" method="POST" class="subscribe-form">
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control mb-2 text-center" placeholder="Enter email address">
+                  <input type="email" name="email" class="form-control mb-2 text-center" placeholder="Enter email address" required>
                   <input type="submit" value="Subscribe" class="form-control submit px-3">
                 </div>
                 {{form.captcha_field}}
@@ -222,12 +223,13 @@
               </form>
             </div>
           </div>
+
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Sanilife Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Innovasoft</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
